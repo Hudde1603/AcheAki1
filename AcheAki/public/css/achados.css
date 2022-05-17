@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.search {
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(167, 167, 167);
+    width: 490px;
+}
+
+.box_wh1 {
+    background-color: white;
+    height: 850px;
+    padding: 2%;
+}
+.wht{
+    background-color: white;
+    height: 950px;
+    padding: 2%;
+}
+
+.mrge1,
+.mrge2 {
+    margin-top: 10%;
+}
+
+.itens-wth {
+    margin-top: 20px !important;
+    padding-top: 20px;
+}
+
+.h6h {
+    margin-left: 23%;
+    font-size: 30px;
+    margin-bottom: -30px;
+}
+
+.button-search {
+    background-color: rgba(174, 214, 241, 1);
+    border: 1px solid rgba(174, 214, 241, 1);
+    border-radius: 5px;
+    color: white;
+    margin-left: 23%;
+    margin-top: 25px;
+    width: 140px;
+}

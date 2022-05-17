@@ -1,0 +1,23 @@
+.navbar-light{
+    background-color:rgba(44, 62, 80, 1)  !important;
+}
+.nav-link{
+    color: white !important;
+
+}
+.nav-link:hover{
+    color: rgba(52, 152, 219, 1) !important;
+}
+.navbar-brand{
+    color: white !important;
+    margin-left: 10% !important;
+    margin-right: 35% !important;
+}
+  .box {
+
+
+    display: none;
+    margin-top: 20px;
+}
+
+

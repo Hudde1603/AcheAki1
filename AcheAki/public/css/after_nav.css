@@ -1,0 +1,251 @@
+.img-nav {
+    width: 100%;
+    height: 445px;
+}
+
+.tudo {
+    width: 1150px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.h3-over-img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 445px;
+    background-color: rgba(33, 47, 61, 0.6);
+    align-content: center;
+}
+
+.text-hover {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+.search {
+    border: 1px solid white;
+    width: 836px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.search-buttton {
+    -webkit-margin-start: 0px;
+    border: 1px solid #34495E;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    background-color: #34495E;
+    color: white;
+}
+
+.search-box {
+    margin-top: 4%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.baixo {
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+
+.txt-imge {
+    margin-top: -10%;
+    margin-left: 1%;
+    width: 43%;
+}
+
+.img-txt {
+    margin-left: 56px;
+    width: 53%;
+}
+
+.h6h {
+    font-size: 35px;
+    font-weight: bold;
+    color: #212F3C;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.h-txt {
+    color: #85878a;
+    line-height: 27px;
+    font-weight: 300;
+}
+
+.about {
+    margin-top: 10px;
+    background-color: #EBF5FB;
+    color: #566573;
+    width: 22%;
+    text-align: center;
+    height: 17%;
+}
+
+.ul-baixo {
+    margin-top: 15px;
+}
+
+.img-baixo {
+    background-color: orange;
+    height: 50px;
+    width: 30%;
+    margin-left: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 25px;
+    transition: 1.2s;
+}
+
+.a-img-baixo {
+    text-decoration: none;
+    color: white;
+    margin: auto;
+    margin-top: 3px;
+}
+
+.img-baixo:hover {
+    background-color: #CB4335;
+}
+
+.tudo {
+    width: 1150px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.num-blue {
+    margin-top: 5%;
+    background-color: #d4eaf7;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+    padding-top: 6%;
+    margin-bottom: 5%;
+}
+
+.num-blue-box {
+    width: 1150px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: arial;
+}
+
+.p-blue-box {
+    margin-top: -40px;
+    font-size: 40px;
+    color: #1f3142;
+}
+
+.ul-blue-box {
+    list-style-type: none;
+    display: inline-flex;
+}
+
+.p-des-blue {
+    font-size: 30px;
+}
+
+.li-des-blue {
+    padding: 60px;
+}
+
+.blu-numb {
+    font-size: 30px;
+}
+
+.contact-p {
+    color: rgba(39, 55, 70, 1);
+    font-size: 25px;
+}
+
+.areatex {
+    margin-top: 20px;
+    width: 400px;
+    height: 150px;
+    border: 1px solid rgba(39, 55, 70, 1);
+}
+
+.text-contac {
+    width: 400px;
+    border: 1px solid rgba(39, 55, 70, 1);
+}
+
+.button-contac {
+    background-color: rgba(174, 214, 241, 1);
+    border: 1px solid rgba(174, 214, 241, 1);
+    border-radius: 5px;
+    color: white;
+}
+
+.contacte {
+    margin-left: 8%;
+}
+.scrollIMG-Index{
+    width: 240px;
+    height: 200px;
+}
+.over{
+    margin-top: 30px;
+    width:  1050px;
+    margin-left: 23px;
+}
+.intesRecentes-Scroll{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.slick-prev:before,
+.slick-next:before
+{
+ 
+
+    font-size: 22px !important;
+    opacity: .75;
+    color: rgb(107, 107, 107) !important;
+
+}
+.mrg-tudo{
+    margin-top: 10%;
+}
+.mais-recentes-buttuns{
+    
+    margin-left: 43%;
+    margin-top: 50px;
+}
+.buttun-achados{
+
+    background-color: rgba(174, 214, 241, 1);
+    border: 1px solid rgba(174, 214, 241, 1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+}
+.buttun-perdidos{
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(213, 216, 220, 1);
+    border: 1px solid rgba(213, 216, 220, 1);
+    color: white;
+}
