@@ -21,4 +21,6 @@ Route::get('/achados', [AchadosController::class,'index'])->name('achados');
 Route::post('/achados', [AchadosController::class,'creat'])->name('achados');
 Route::get('/perdidos', [perdidosController::class,'index'])->name('perdidos');
 Route::post('/perdidos', [perdidosController::class,'creat'])->name('perdidos');
+///rota do item com um valor opcional 
+Route::get('/item/{id?}',[perdidosController::class,'item'])->name('item');
 

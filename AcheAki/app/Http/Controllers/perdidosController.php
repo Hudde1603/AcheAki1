@@ -19,6 +19,7 @@ use App\Models\DocumentoModel;
 use App\Models\PassaporteModel;
 use App\Models\BilheteModel;
 use App\Models\CartaoEleitoral;
+use Illuminate\Support\Facades\Storage;
 
 class perdidosController extends Controller
 {
@@ -29,10 +30,7 @@ class perdidosController extends Controller
             ->orderBy('idartigo', 'desc')
             ->get();
 
-        $todo = DB::table('artigo')
-            ->where('status', 'perdido')
-            ->orderBy('idartigo', 'desc')
-            ->get();
+    
 
 
         return view('perdidos', ['todos' => $todo]);
@@ -72,7 +70,8 @@ class perdidosController extends Controller
         //dados item
         $item_name = $request->get('item_name');
         $descricao = $request->get('descricao');
-        $foto = $request->get('foto');
+       $foto_name = $request->get('foto');
+       $foto_arquivo= $request->file('foto');
         $local = $request->get('local');
         //pegar id user
         $usersid = ClienteModel::where('nome', $nome)
@@ -80,10 +79,19 @@ class perdidosController extends Controller
             ->where('email', $email)
             ->get()->first();
 
+
+
+    ///activar no storage local 
+        $path = Storage::disk('local')->put($foto_name, $foto_arquivo);
+        $path = Storage::url($foto_name);
+
+
+        
+
         ///adicionar artigo com id doclinte
         $artigos = new ArtigoModel();
         $artigos->descricao = $descricao;
-        $artigos->foto = $foto;
+        $artigos->foto = $path;
         $artigos->status = 'perdido';
         $artigos->idcliente = $usersid->idcliente;
         $artigos->item_name = $item_name;
@@ -94,7 +102,7 @@ class perdidosController extends Controller
 
         ///pegar id do artigo 
         $artigosid = ArtigoModel::where('item_name', $item_name)
-            ->where('foto', $foto)
+            ->where('foto', $path)
             ->where('idcliente', $usersid->idcliente)
             ->get()->first();
 
@@ -130,6 +138,8 @@ class perdidosController extends Controller
                 $Ipad->idartigo = $artigosid->idartigo;
 
                 $Ipad->save();
+
+
 
 
 
@@ -354,5 +364,15 @@ class perdidosController extends Controller
                 return view('perdidos', ['todos' => $todo]);
             }
         }
+
+        
+    }
+
+
+    //exibir um unico item
+    public function item()
+    {
+
+        return  view('item');
     }
 }

@@ -78,16 +78,18 @@
                     <ul class="este over">
 
                         @foreach ($todos as $key)
-                            <li>
-                                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt=""
-                                    srcset="">
-                                <p>
-                                <h6>{{ $key->item_name }}</h6>
-                                </p>
-                                <p>Angola-{{ $key->local}}
-                                <p>
-                                    Data:{{ $key->data}}</p>
-                            </li>
+                            <a href="{{route('item')}}">
+                                <li>
+                                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt=""
+                                        srcset="">
+                                    <p>
+                                    <h6>{{ $key->item_name }}</h6>
+                                    </p>
+                                    <p>Angola-{{ $key->local }}
+                                    <p>
+                                        Data:{{ $key->data }}</p>
+                                </li>
+                            </a>
                         @endforeach
 
 
@@ -113,7 +115,7 @@
             @endif
             <div class="itens-wth">
                 <h6 class="h6h">Pesquisar Item Perdidos </h6>
-                <form class="search-box" action="{{ route('achados') }}" method="post">
+                <form class="search-box" action="{{ route('perdidos') }}" method="post">
                     @csrf
                     <div class="container register">
                         <div class="row f1">
