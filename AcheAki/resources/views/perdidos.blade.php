@@ -58,27 +58,34 @@
     <div class="tudo mrge1">
         <div class="box_wh1">
             <div class="itens-wth">
-                <h6 class="h6h">Pesquisar Item Achado </h6>
-                <form class="search-box">
-                    <input class="search" type="search" placeholder="Pesquisar Item" aria-label="Search">
-                    <button class="search-buttton" type="submit">Pesquisar</button>
-                </form>
+                <h6 class="h6h">Pesquisar Item Perdidos </h6>
+                <form action="{{ route('item') }}" method="POST">
+                    @csrf
+                    <div class="search-box">
+                        <input class="search" type="search" name="nome" placeholder="Pesquisar Item"
+                            aria-label="Search">
+                        <button class="search-buttton" type="submit">Pesquisar</button> <br>
+                    </div>
 
-                <button class="button-search" type="submit">Categoria</button>
+                    <select class="button-search" name="selType">
+                        <option>Categoria</option>
+                        <option value="electronico">electronico</option>
+                        <option value="acessorios">acessorios</option>
+                        <option value="documento">documento</option>
+                    </select>
+
+                </form>
 
                 <div class="tudo mrg-tudo">
                     <h5 class="intesRecentes-Scroll">Itens recentes</h5>
 
-                    <div class="mais-recentes-buttuns">
-                        <button type="submit" class="buttun-achados">Achados</button>
-                        <button type="submit" class="buttun-perdidos">Perdidos</button>
-
-                    </div>
 
                     <ul class="este over">
 
                         @foreach ($todos as $key)
-                            <a href="{{route('item')}}">
+                            <!-- Mandar id do item selecionado -->
+                            <a class="itemFor"
+                                href="{{ route('itemUnico', ['id' => $key->idartigo, 'nome' => $key->item_name]) }}">
                                 <li>
                                     <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt=""
                                         srcset="">
@@ -114,7 +121,7 @@
                 </div>
             @endif
             <div class="itens-wth">
-                <h6 class="h6h">Pesquisar Item Perdidos </h6>
+                <h6 class="h6h">Cadastrar itens Perdidos </h6>
                 <form class="search-box" action="{{ route('perdidos') }}" method="post">
                     @csrf
                     <div class="container register">

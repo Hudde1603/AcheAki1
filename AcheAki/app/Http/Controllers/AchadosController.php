@@ -31,13 +31,8 @@ class AchadosController extends Controller
             ->orderBy('idartigo', 'desc')
             ->get();
 
-         $todo = DB::table('artigo')
-                    ->where('status', 'achado')
-                    ->orderBy('idartigo', 'desc')
-                    ->get();
 
-
-                return view('achados', ['todos' => $todo]);
+        return view('achados', ['todos' => $todo]);
     }
 
     public function creat(Request $request)
@@ -156,7 +151,7 @@ class AchadosController extends Controller
 
                 $Telefones->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -172,7 +167,7 @@ class AchadosController extends Controller
 
                 $Computadores->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -210,7 +205,7 @@ class AchadosController extends Controller
 
                 $fios->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -225,7 +220,7 @@ class AchadosController extends Controller
 
                 $anel->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -240,7 +235,7 @@ class AchadosController extends Controller
 
                 $pasta->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -256,7 +251,7 @@ class AchadosController extends Controller
 
 
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -301,7 +296,7 @@ class AchadosController extends Controller
 
 
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -326,7 +321,7 @@ class AchadosController extends Controller
 
                 $passaporte->save();
 
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -345,7 +340,7 @@ class AchadosController extends Controller
                 $cartaoeleitoral->idartigo = $artigosid->idartigo;
 
                 $cartaoeleitoral->save();;
-                 $todo = DB::table('artigo')
+                $todo = DB::table('artigo')
                     ->where('status', 'achado')
                     ->orderBy('idartigo', 'desc')
                     ->get();
@@ -355,4 +350,60 @@ class AchadosController extends Controller
             }
         }
     }
+
+      //pesuisar um unico item achado
+      public function pesquisar(Request $request)
+      {
+  
+  
+          $nome = $request->get('nome');
+          $selecionado =  $request->get('selType');
+  
+          if ($selecionado ==  'Categoria') {
+  
+              /// pesquisa sem incluir a categoria 
+              $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+                  ->where('status', 'achado')
+                  ->get();
+  
+              echo $users;
+          } else {
+              //pesquisa para cada categoria 
+              if ($selecionado  == 'electronico') {
+  
+  
+                  $itemElectronico = DB::table('artigo')
+                      ->join('eletronico', 'artigo.idartigo', '=', 'eletronico.idartigo')
+                      ->select('artigo.*')
+                      ->where('item_name', 'like',  '%' . $nome . '%')
+                      ->where('status', 'achado')
+                      ->get();
+  
+  
+                  echo $itemElectronico;
+              } elseif ($selecionado  == 'acessorios') {
+  
+                  $itemElectronico = DB::table('artigo')
+                      ->join('acessorio', 'artigo.idartigo', '=', 'acessorio.idartigo')
+                      ->select('artigo.*')
+                      ->where('item_name', 'like',  '%' . $nome . '%')
+                      ->where('status', 'achado')
+                      ->get();
+  
+  
+                  echo $itemElectronico;
+  
+              } elseif ($selecionado  == 'documento') {
+  
+                  $itemElectronico = DB::table('artigo')
+                      ->join('documento', 'artigo.idartigo', '=', 'documento.idartigo')
+                      ->select('artigo.*')
+                      ->where('item_name', 'like',  '%' . $nome . '%')
+                      ->where('status', 'achado')
+                      ->get();
+  
+                  echo $itemElectronico;
+              }
+          }
+      }
 }

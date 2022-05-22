@@ -56,36 +56,42 @@
     <div class="tudo mrge1">
         <div class="box_wh1">
             <div class="itens-wth">
-                <h6 class="h6h">Pesquisar Item Achado </h6>
-                <form class="search-box">
-                    <input class="search" type="search" placeholder="Pesquisar Item" aria-label="Search">
-                    <button class="search-buttton" type="submit">Pesquisar</button>
+                <h6 class="h6h">Pesquisar Item Achados </h6>
+                <form action="{{ route('itemachado') }}" method="POST">
+                    @csrf
+                    <div class="search-box">
+                        <input class="search" type="search" placeholder="Pesquisar Item" aria-label="Search">
+                        <button class="search-buttton" type="submit">Pesquisar</button> <br>
+                    </div>
+
+                    <select class="button-search" name="selType">
+                        <option>Categoria</option>
+                        <option value="electronico">electronico</option>
+                        <option value="acessorios">acessorios</option>
+                        <option value="documento">documento</option>
+                    </select>
+
                 </form>
-
-                <button class="button-search" type="submit">Categoria</button>
-
                 <div class="tudo mrg-tudo">
                     <h5 class="intesRecentes-Scroll">Itens recentes</h5>
 
-                    <div class="mais-recentes-buttuns">
-                        <button type="submit" class="buttun-achados">Achados</button>
-                        <button type="submit" class="buttun-perdidos">Perdidos</button>
-
-                    </div>
 
                     <ul class="este over">
 
                         @foreach ($todos as $key)
-                            <li>
-                                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt=""
-                                    srcset="">
-                                <p>
-                                <h6>{{ $key->item_name }}</h6>
-                                </p>
-                                <p>Angola-{{ $key->local}}
-                                <p>
-                                    Data:{{ $key->data}}</p>
-                            </li>
+                            <<!-- Mandar id do item selecionado -->
+                            <a class="itemFor" href="{{ route('itemUnico',['id'=>$key->idartigo,'nome'=>$key->item_name])}}">
+                                <li>
+                                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt=""
+                                        srcset="">
+                                    <p>
+                                    <h6>{{ $key->item_name }}</h6>
+                                    </p>
+                                    <p>Angola-{{ $key->local}}
+                                    <p>
+                                        Data:{{ $key->data }}</p>
+                                </li>
+                            </a>
                         @endforeach
 
 
@@ -110,7 +116,7 @@
                 </div>
             @endif
             <div class="itens-wth">
-                <h6 class="h6h"> Registar Item Perdido </h6>
+                <h6 class="h6h"> Registar Item Achados </h6>
                 <form class="search-box" action="{{ route('achados') }}" method="post">
                     @csrf
                     <div class="container register">

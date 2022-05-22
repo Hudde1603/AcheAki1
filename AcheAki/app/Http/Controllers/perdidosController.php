@@ -30,7 +30,7 @@ class perdidosController extends Controller
             ->orderBy('idartigo', 'desc')
             ->get();
 
-    
+        //idartigo
 
 
         return view('perdidos', ['todos' => $todo]);
@@ -70,8 +70,8 @@ class perdidosController extends Controller
         //dados item
         $item_name = $request->get('item_name');
         $descricao = $request->get('descricao');
-       $foto_name = $request->get('foto');
-       $foto_arquivo= $request->file('foto');
+        $foto_name = $request->get('foto');
+        $foto_arquivo = $request->file('foto');
         $local = $request->get('local');
         //pegar id user
         $usersid = ClienteModel::where('nome', $nome)
@@ -81,12 +81,12 @@ class perdidosController extends Controller
 
 
 
-    ///activar no storage local 
+        ///activar no storage local 
         $path = Storage::disk('local')->put($foto_name, $foto_arquivo);
         $path = Storage::url($foto_name);
 
 
-        
+
 
         ///adicionar artigo com id doclinte
         $artigos = new ArtigoModel();
@@ -364,15 +364,77 @@ class perdidosController extends Controller
                 return view('perdidos', ['todos' => $todo]);
             }
         }
+    }
 
-        
+    //pesuisar um unico item perdido
+    public function pesquisarPerdidos(Request $request)
+    {
+
+
+        $nome = $request->get('nome');
+        $selecionado =  $request->get('selType');
+
+        if ($selecionado ==  'Categoria') {
+
+            /// pesquisa sem incluir a categoria 
+            $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+                ->where('status', 'perdido')
+                ->get();
+
+            echo $users;
+        } else {
+            //pesquisa para cada categoria 
+            if ($selecionado  == 'electronico') {
+
+
+                $itemElectronico = DB::table('artigo')
+                    ->join('eletronico', 'artigo.idartigo', '=', 'eletronico.idartigo')
+                    ->select('artigo.*')
+                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('status', 'perdido')
+                    ->get();
+
+
+                echo $itemElectronico;
+            } elseif ($selecionado  == 'acessorios') {
+
+                $itemElectronico = DB::table('artigo')
+                    ->join('acessorio', 'artigo.idartigo', '=', 'acessorio.idartigo')
+                    ->select('artigo.*')
+                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('status', 'perdido')
+                    ->get();
+
+
+                echo $itemElectronico;
+
+            } elseif ($selecionado  == 'documento') {
+
+                $itemElectronico = DB::table('artigo')
+                    ->join('documento', 'artigo.idartigo', '=', 'documento.idartigo')
+                    ->select('artigo.*')
+                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('status', 'perdido')
+                    ->get();
+
+                echo $itemElectronico;
+            }
+        }
     }
 
 
     //exibir um unico item
-    public function item()
+    public function item(Request $request)
     {
 
-        return  view('item');
+        //pesuisar o item por um id
+        $id = $request->id;
+
+        $artigos = ArtigoModel::where('idartigo', $id)
+            ->get()->first();
+
+        // echo $id ;
+
+        return  view('item', ['artigos' => $artigos]);
     }
 }
