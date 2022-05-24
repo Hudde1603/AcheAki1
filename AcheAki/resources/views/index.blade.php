@@ -7,8 +7,9 @@
     <img class="img-nav" src="{{ asset('img/Rectangle 1267.png') }}" alt="" srcset="" />
     <div class="h3-over-img">
         <h1 class="text-hover">Mesmo perdido, achamos, faça a sua pesquisa</h1>
-        <form class="search-box">
-            <input class="search" type="search" placeholder="Pesquisar Item" aria-label="Search">
+        <form action="{{ route('itemachado') }}" method="POST" class="search-box">
+            @csrf
+            <input name="nome" class="search" type="search" placeholder="Pesquisar Item" aria-label="Search">
             <button class="search-buttton" type="submit">Pesquisar</button>
         </form>
     </div>
@@ -24,79 +25,79 @@
         </div>
 
         <ul class="este over">
-            
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
-                <li>
-                    <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
-                    <p>
-                    <h6>Iphone 11 pro</h6>
-                    </p>
-                    <p>Angola-Lunada
-                    <p>
-                        Data:20/12/2021</p>
-                </li>
+
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
+            <li>
+                <img src="{{ asset('img/Rectangle 1279.png') }}" class="scrollIMG-Index" alt="" srcset="">
+                <p>
+                <h6>Iphone 11 pro</h6>
+                </p>
+                <p>Angola-Lunada
+                <p>
+                    Data:20/12/2021</p>
+            </li>
         </ul>
 
 
@@ -163,8 +164,36 @@
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-    <script type="text/javascript" src="{{ asset('css/slider.js') }}"></script>
+    <div>
+        <a href="javascript:;" id="getData">Get Data</a>
+        <div>
+            <div>
+                <h1 id="title"></h1>
+                <p id="description"></p>
+                </h1>
+                <div></div>
+            </div>
+        </div>
 
-@endsection
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+        <script type="text/javascript" src="{{ asset('css/slider.js') }}"></script>
+
+
+        
+        <script type=text/javascript>
+            $(document).ready(function() {
+                $("#getData").click(function() {
+                    $.ajax({ //create an ajax request to display.php
+                        type: "GET",
+                        url: "/pesquisa_perdido",
+                        success: function(data) {
+                            $("#title").html(data.item_name);
+                            $("#description").html(data.status);
+                        }
+                    });
+                });
+            });
+        </script>
+
+    @endsection

@@ -36,18 +36,43 @@ class perdidosController extends Controller
         return view('perdidos', ['todos' => $todo]);
     }
 
+    public function homeList()
+    {
+
+        $todo = DB::table('artigo')
+            ->where('status', 'perdido')
+            ->orderBy('idartigo', 'desc')
+            ->get();
+
+        //idartigo
+
+
+        return response()->json($todo, 200);
+    }
+
     public function creat(Request $request)
     {
 
         //regras de validação 
         $regras = [
-            'selType' => 'required|in:electronico,acessorios,documento'
+            'selType' => 'required|in:electronico,acessorios,documento',
+            'telefone' => 'required',
+            'emial' => 'email',
+            'nome' => 'required',
+            'item_name' => 'required',
+            'local' => 'required',
+            'descricao' => 'required',
+            'foto' => 'required'
+
         ];
 
         //mensagen de fedbek de validação
         $feedback = [
 
-            'selType.required' => 'Celecione Uma Opção ee'
+            'selType.required' => 'Celecione Uma Opção ee',
+            'email.email' => 'deve preencher com um email valido ',
+            'required' => 'o campo :attribute  é obrigatorio',
+
         ];
 
         $request->validate($regras, $feedback);
@@ -70,8 +95,7 @@ class perdidosController extends Controller
         //dados item
         $item_name = $request->get('item_name');
         $descricao = $request->get('descricao');
-        $foto_name = $request->get('foto');
-        $foto_arquivo = $request->file('foto');
+        $foto = $request->get('foto');
         $local = $request->get('local');
         //pegar id user
         $usersid = ClienteModel::where('nome', $nome)
@@ -79,19 +103,10 @@ class perdidosController extends Controller
             ->where('email', $email)
             ->get()->first();
 
-
-
-        ///activar no storage local 
-        $path = Storage::disk('local')->put($foto_name, $foto_arquivo);
-        $path = Storage::url($foto_name);
-
-
-
-
-        ///adicionar artigo com id doclinte
+        //dicionar artigo com id doclinte
         $artigos = new ArtigoModel();
         $artigos->descricao = $descricao;
-        $artigos->foto = $path;
+        $artigos->foto = $foto;
         $artigos->status = 'perdido';
         $artigos->idcliente = $usersid->idcliente;
         $artigos->item_name = $item_name;
@@ -102,17 +117,33 @@ class perdidosController extends Controller
 
         ///pegar id do artigo 
         $artigosid = ArtigoModel::where('item_name', $item_name)
-            ->where('foto', $path)
+            ->where('foto', $foto)
             ->where('idcliente', $usersid->idcliente)
             ->get()->first();
 
 
-        ///cadastrar achados consuante o valor escolhido
+        ///cadastrar perdidos consuante o valor escolhido
         if ($request->get('selType') == 'electronico') {
             //itens do select
             $cor = $request->get('cor');
             $marca = $request->get('marca');
             $modelo = $request->get('modelo');
+
+            $regras = [
+                'cor' => 'required',
+                'marca' => 'required',
+                'modelo' => 'required'
+
+            ];
+
+            //mensagen de fedbek de validação
+            $feedback = [
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
+            ];
+
+            $request->validate($regras, $feedback);
 
 
             //add no electronico
@@ -132,17 +163,14 @@ class perdidosController extends Controller
 
             if ($request->get('Ipad') != null) {
 
+
+
                 ///ad on ipad
                 $Ipad = new IpadMdel();
                 $Ipad->ideletronico = $eletronicosid->ideletronico;
                 $Ipad->idartigo = $artigosid->idartigo;
 
                 $Ipad->save();
-
-
-
-
-
 
 
                 $todo = DB::table('artigo')
@@ -153,6 +181,20 @@ class perdidosController extends Controller
 
                 return view('perdidos', ['todos' => $todo]);
             } elseif ($request->get('Telefone') != null) {
+                $regras = [
+                    'Telefone_Tipo' => 'required',
+
+                ];
+
+                //mensagen de fedbek de validação
+                $feedback = [
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
+                ];
+
+                $request->validate($regras, $feedback);
+
 
 
                 $Telefone_Tipo = $request->get('Telefone_Tipo');
@@ -190,6 +232,23 @@ class perdidosController extends Controller
                 return view('perdidos', ['todos' => $todo]);
             }
         } elseif ($request->get('selType') == 'acessorios') {
+
+            $regras = [
+                'cor_acessorio' => 'required',
+                'Tamanho' => 'required',
+                'marca_acessorio' => 'required',
+
+            ];
+
+            //mensagen de fedbek de validação
+            $feedback = [
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
+            ];
+
+            $request->validate($regras, $feedback);
+
 
             $cor_acessorio = $request->get('cor_acessorio');
             $Tamanho = $request->get('Tamanho');
@@ -275,6 +334,21 @@ class perdidosController extends Controller
             }
         } elseif ($request->get('selType') == 'documento') {
 
+            $regras = [
+                'genero_doc' => 'required',
+                'nome_documento' => 'required',
+
+            ];
+
+            //mensagen de fedbek de validação
+            $feedback = [
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
+            ];
+
+            $request->validate($regras, $feedback);
+
             $Genero = $request->get('genero_doc');
             $nome_documento = $request->get('nome_documento');
 
@@ -295,6 +369,21 @@ class perdidosController extends Controller
 
 
             if ($request->get('Bilhete') != null) {
+
+                $regras = [
+                    'filhacao_pai' => 'required',
+                    'filhacao_mae' => 'required',
+
+                ];
+
+                //mensagen de fedbek de validação
+                $feedback = [
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
+                ];
+
+                $request->validate($regras, $feedback);
 
                 $filhacao_pai = $request->get('filhacao_pai');
                 $filhacao_mae = $request->get('filhacao_mae');
@@ -318,6 +407,22 @@ class perdidosController extends Controller
 
                 return view('perdidos', ['todos' => $todo]);
             } elseif ($request->get('Passaporte') != null) {
+
+                $regras = [
+                    'nmero_passaporte' => 'required',
+                    'nome_pessoal' => 'required',
+                    'tipo_passarporte' => 'required'
+
+                ];
+
+                //mensagen de fedbek de validação
+                $feedback = [
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
+                ];
+
+                $request->validate($regras, $feedback);
 
                 $nmero_passaporte = $request->get('nmero_passaporte');
 
@@ -343,6 +448,21 @@ class perdidosController extends Controller
 
                 return view('perdidos', ['todos' => $todo]);
             } elseif ($request->get('Cartão_Eleitoral') != null) {
+                $regras = [
+                    'crupo_eleitoral' => 'required',
+                    'numero_eleitoral' => 'required',
+
+                ];
+
+                //mensagen de fedbek de validação
+                $feedback = [
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
+                ];
+
+                $request->validate($regras, $feedback);
+
                 $crupo_eleitoral = $request->get('crupo_eleitoral');
 
                 $numero_eleitoral = $request->get('numero_eleitoral');
@@ -353,8 +473,7 @@ class perdidosController extends Controller
                 $cartaoeleitoral->iddocumento = $docomentosid->iddocumento;
                 $cartaoeleitoral->idartigo = $artigosid->idartigo;
 
-                $cartaoeleitoral->save();
-
+                $cartaoeleitoral->save();;
                 $todo = DB::table('artigo')
                     ->where('status', 'perdido')
                     ->orderBy('idartigo', 'desc')
@@ -366,7 +485,23 @@ class perdidosController extends Controller
         }
     }
 
-    //pesuisar um unico item perdido
+
+    //exibir um unico item
+    public function item(Request $request)
+    {
+
+        //pesuisar o item por um id
+        $id = $request->id;
+
+        $artigos = ArtigoModel::where('idartigo', $id)
+            ->get()->first();
+
+        // echo $id ;
+
+        return  view('item', ['artigos' => $artigos]);
+    }
+
+
     public function pesquisarPerdidos(Request $request)
     {
 
@@ -405,9 +540,7 @@ class perdidosController extends Controller
                     ->where('status', 'perdido')
                     ->get();
 
-
                 echo $itemElectronico;
-
             } elseif ($selecionado  == 'documento') {
 
                 $itemElectronico = DB::table('artigo')
@@ -418,23 +551,14 @@ class perdidosController extends Controller
                     ->get();
 
                 echo $itemElectronico;
+            } else {
+                //pesuisa para a pagina home
+                $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('status', 'perdido')
+                    ->get();
+
+                echo $users;
             }
         }
-    }
-
-
-    //exibir um unico item
-    public function item(Request $request)
-    {
-
-        //pesuisar o item por um id
-        $id = $request->id;
-
-        $artigos = ArtigoModel::where('idartigo', $id)
-            ->get()->first();
-
-        // echo $id ;
-
-        return  view('item', ['artigos' => $artigos]);
     }
 }

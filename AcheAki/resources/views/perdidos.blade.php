@@ -111,15 +111,7 @@
 
     <div class="tudo wht mrge2 container">
         <div class="box_wh2">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
             <div class="itens-wth">
                 <h6 class="h6h">Cadastrar itens Perdidos </h6>
                 <form class="search-box" action="{{ route('perdidos') }}" method="post">
@@ -127,13 +119,56 @@
                     <div class="container register">
                         <div class="row f1">
                             <div class="col-md-6 col-sm-6">
-                                <label for="o que você achou?">O que você achou?</label>
-                                <input class="form-control form-control-sm" type="text" name="item_name"><br>
-                                <label for="o que você achou?">Local ou Cidade</label>
-                                <input class="form-control form-control-sm" type="text" name="local"><br>
-                                <label for="">Descrição</label>
-                                <textarea class="form-control form-control-sm" name="descricao" rows="6"></textarea> <br>
-                                <select class="form-control" name="selType">
+                                @if ($errors->has('item_name'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label for="o que você achou?" class="erro">O que você perdeu?</label>
+                                <input class="form-control form-control-sm" type="text" name="item_name"
+                                    value="{{ old('item_name') }}"><br>
+
+                                @if ($errors->has('local'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+
+                                <label for="o que você achou?" class="erro">Local ou Cidade</label>
+                                <input class="form-control form-control-sm" type="text" name="local"
+                                    value="{{ old('descricao') }}"><br>
+
+                                @if ($errors->has('local'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+
+                                <label for="" class="erro">Descrição</label>
+                                <textarea class="form-control form-control-sm" name="descricao" rows="6"> {{ old('descricao') }}</textarea> <br>
+
+                                @if ($errors->has('selType'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <select class="form-control erro" name="selType" value="{{ old('selType') }}">
                                     <option>Categoria</option>
                                     <option value="electronico">electronico</option>
                                     <option value="acessorios">acessorios</option>
@@ -141,27 +176,76 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="">Anexar Foto</label>
-                                <input class="form-control-file" type="file" name="foto" id="ficheiro"><br>
+                                @if ($errors->has('foto'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label for="" class="erro">Anexar Foto</label>
+                                <input class="form-control-file" type="file" name="foto" value="{{ old('foto') }}"
+                                    id="ficheiro"><br>
                                 <!-- Botão de opção-->
 
                                 <!--  Para electronico -->
-                                <label class="electronico box" for="Cor">Cor</label>
-                                <input class="electronico box" id="" class="" name="cor" type="text"
-                                    placeholder="Exemplo: Pedro">
+                                @if ($errors->has('Cor'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
 
-                                <label class="electronico box" for="Marca">Marca</label>
+                                    </style>
+                                @endif
+                                <label class="electronico box erro" for="Cor">Cor</label>
+                                <input class="electronico box" id="" class="" name="cor"
+                                    value="{{ old('cor') }}" type="text" placeholder="Exemplo: Pedro">
+
+                                @if ($errors->has('marca'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+
+                                <label class="electronico box erro" for="Marca">Marca</label>
                                 <input class="electronico box" id="Marca" class="" type="text"
-                                    name="marca" placeholder="Exemplo: Pedro"><br>
+                                    name="marca" value="{{ old('marca') }}" placeholder="Exemplo: Pedro"><br>
 
-                                <label class="electronico box" for="Modelo">Modelo</label>
+                                @if ($errors->has('modelo'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+
+                                <label class="electronico box erro" for="Modelo">Modelo</label>
                                 <input class="electronico box" id="Modelo" class="" type="text"
-                                    name="modelo" placeholder="Exemplo: Pedro"><br>
+                                    name="modelo" value="{{ old('modelo') }}" placeholder="Exemplo: Pedro"><br>
 
                                 <!-- Para cada categoria de electronicos-->
-                                <label class="Telefone box1 box" for="Telefone">Telefone Tipo</label>
+                                @if ($errors->has('Telefone_Tipo'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Telefone box1 box erro" for="Telefone">Telefone Tipo</label>
                                 <input class="Telefone box1 box" id="Telefone" class="" type="text"
-                                    name="Telefone_Tipo" placeholder="Exemplo: Pedro"><br>
+                                    name="Telefone_Tipo" value="{{ old('Telefone_Tipo') }}"
+                                    placeholder="Exemplo: Pedro"><br>
 
 
                                 <!-- Radio Buttum cada categoria de electronicos-->
@@ -178,17 +262,46 @@
                                 <!-- end-->
 
                                 <!-- acessorios -->
-                                <label class="acessorios box" for="Cor">Cor</label><br>
+                                @if ($errors->has('cor_acessorio'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="acessorios box erro" for="Cor">Cor</label><br>
                                 <input class="acessorios box" id="" class="" name="cor_acessorio"
-                                    type="text" placeholder="Exemplo: Pedro">
+                                    value="{{ old('cor_acessorio') }}" type="text" placeholder="Exemplo: Pedro">
 
-                                <label class="acessorios box" for="Tmanho">Tamanho</label>
-                                <input class="acessorios box" id="" name="Tamanho" class="" type="text"
-                                    placeholder="Exemplo: Pedro"><br>
+                                @if ($errors->has('Tamanho'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
 
-                                <label class="acessorios box" for="Marca">Marca</label><br>
-                                <input class="acessorios box" id="marca_acessorio" name="marca_acessorio"
+                                    </style>
+                                @endif
+                                <label class="acessorios box erro" for="Tmanho">Tamanho</label>
+                                <input class="acessorios box" id="" name="Tamanho" value="{{ old('Tamanho') }}"
                                     class="" type="text" placeholder="Exemplo: Pedro"><br>
+
+
+                                @if ($errors->has('marca_acessorio'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="acessorios box erro" for="Marca">Marca</label><br>
+                                <input class="acessorios box" id="marca_acessorio" name="marca_acessorio"
+                                    value="{{ old('marca_acessorio') }}" class="" type="text"
+                                    placeholder="Exemplo: Pedro"><br>
 
 
 
@@ -206,45 +319,139 @@
 
 
                                 <!-- documento -->
-                                <label class="documento box" for="Cor">Genero</label>
-                                <input class="documento box" id="Cor" name="genero_doc" class="Genero"
-                                    type="text" placeholder="Exemplo: Pedro">
+                                @if ($errors->has('genero_doc'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
 
-                                <label class="documento box" for="Marca">Nome Documento</label>
-                                <input class="documento box" id="Marca" name="nome_documento" class="nome_documento"
-                                    class="" type="text" placeholder="Exemplo: Pedro"><br>
+                                    </style>
+                                @endif
+                                <label class="documento box erro" for="Cor">Genero</label>
+                                <input class="documento box" id="Cor" name="genero_doc"
+                                    value="{{ old('genero_doc') }}" class="Genero" type="text"
+                                    placeholder="Exemplo: Pedro">
+
+                                @if ($errors->has('nome_documento'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+
+                                <label class="documento box erro" for="Marca">Nome Documento</label>
+                                <input class="documento box" id="Marca" name="nome_documento"
+                                    value="{{ old('nome_documento') }}" class="nome_documento" class=""
+                                    type="text" placeholder="Exemplo: Pedro"><br>
 
                                 <!-- Para cada categoria de documento-->
 
                                 <!-- Bilhete dados  -->
-                                <label class="Bilhete box1 box" for="Bilhete">Filhação Pai</label>
-                                <input class="Bilhete box1 box" id="Bilhete" name="filhacao_pai" class=""
-                                    class="filhacao_pai" type="text" placeholder="Exemplo: Pedro">
-                                <label class="Bilhete box1 box" for="Bilhete">Filhação Mãe</label>
-                                <input class="Bilhete box1 box" id="Bilhete" name="filhacao_mae" class="filhacao_mae"
+                                @if ($errors->has('filhacao_pai'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Bilhete box1 box erro" for="Bilhete">Filhação Pai</label>
+                                <input class="Bilhete box1 box" id="Bilhete" name="filhacao_pai"
+                                    value="{{ old('filhacao_pai') }}" class="" class="filhacao_pai"
                                     type="text" placeholder="Exemplo: Pedro">
+
+                                @if ($errors->has('filhacao_mae'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Bilhete box1 box erro" for="Bilhete">Filhação Mãe</label>
+                                <input class="Bilhete box1 box" id="Bilhete" name="filhacao_mae"
+                                    value="{{ old('filhacao_mae') }}" class="filhacao_mae" type="text"
+                                    placeholder="Exemplo: Pedro">
 
 
                                 <!-- Passaporte Dados -->
-                                <label class="Passaporte box1 box" for="Anel">Numero</label>
+                                @if ($errors->has('nmero_passaporte'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Passaporte box1 box erro" for="Anel">Numero</label>
                                 <input class="Passaporte box1 box" id="Telefone" name="nmero_passaporte"
-                                    class="" class="" type="text"
-                                    placeholder="Exemplo: Pedro">
-                                <label class="Passaporte box1 box" for="Anel">Nome Pessoal</label>
+                                    value="{{ old('nmero_passaporte') }}" class=""
+                                    class="" type="text" placeholder="Exemplo: Pedro">
+
+                                @if ($errors->has('nmero_passaporte'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Passaporte box1 box erro" for="Anel">Nome Pessoal</label>
                                 <input class="Passaporte box1 box" id="Telefone" name="nome_pessoal"
-                                    class="" type="text" placeholder="Exemplo: Pedro">
-                                <label class="Passaporte box1 box" for="Anel">Tipo</label>
+                                    value="{{ old('nome_pessoal') }}" class="" type="text"
+                                    placeholder="Exemplo: Pedro">
+
+                                @if ($errors->has('tipo_passarporte'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Passaporte box1 box erro" for="Anel">Tipo</label>
                                 <input class="Passaporte box1 box" id="Telefone" name="tipo_passarporte"
-                                    class="" type="text" placeholder="Exemplo: Pedro">
+                                    value="{{ old('tipo_passarporte') }}" class="" type="text"
+                                    placeholder="Exemplo: Pedro">
 
 
                                 <!-- Dados Cartão eleitoral -->
-                                <label class="Cartão_Eleitoral box1 box" for="Pasta">Grupo</label>
+                                @if ($errors->has('crupo_eleitoral'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Cartão_Eleitoral box1 box erro" for="Pasta">Grupo</label>
                                 <input class="Cartão_Eleitoral box1 box" id="Cartão_Eleitoral" name="crupo_eleitoral"
-                                    class="" type="text" placeholder="Exemplo: Pedro"><br>
-                                <label class="Cartão_Eleitoral box1 box" for="Pasta">Numero Eleitor</label>
+                                    value="{{ old('crupo_eleitoral') }}" class="" type="text"
+                                    placeholder="Exemplo: Pedro"><br>
+
+                                @if ($errors->has('numero_eleitoral'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label class="Cartão_Eleitoral box1 box erro" for="Pasta">Numero Eleitor</label>
                                 <input class="Cartão_Eleitoral box1 box" class="numero_eleitoral"
-                                    name="numero_eleitoral" id="Cartão_Eleitoral" class="" type="text"
+                                    value="{{ old('numero_eleitoral') }}" name="numero_eleitoral"
+                                    id="Cartão_Eleitoral" class="" type="text"
                                     placeholder="Exemplo: Pedro"><br>
 
                                 <!-- Radio Buttum cada categoria de documento-->
@@ -265,22 +472,51 @@
                         <h6 class="h6h">Seus Dados</h6> <br>
                         <div class="row f2">
                             <div class="col-md-6 col-sm-6">
-                                <label for="Nome">Nome Completo</label>
+                                @if ($errors->has('nome'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label for="Nome" class="erro">Nome Completo</label>
                                 <input class="form-control form-control-sm" type="text" name="nome"
-                                    placeholder="Exemplo: Pedro"><br>
-                                <label for="Nome">Telefone</label>
+                                    value="{{ old('nome') }}" placeholder="Exemplo: Pedro"><br>
+
+                                @if ($errors->has('telefone'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red
+                                        }
+
+                                    </style>
+                                @endif
+                                <label for="Nome" class="erro">Telefone</label>
                                 <input class="form-control form-control-sm" type="text" name="telefone"
-                                    placeholder="9XX XXX XXX"><br>
+                                    value="{{ old('telefone') }}" placeholder="9XX XXX XXX"><br>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <label for="Nome">Email</label>
-                                <input class="form-control form-control-sm" type="email" name="emial"
-                                    placeholder="Exemplo@exemplo.com"><br>
+                                @if ($errors->has('emial'))
+                                    <span class="error" style="color: red">*</span>
+                                    <style>
+                                        .erro {
+                                            color: red !important
+                                        }
+
+                                    </style>
+                                @endif
+                                <label for="Nome" class="erro">Email</label>
+                                <input class="form-control form-control-sm " type="email" name="emial"
+                                    value="{{ old('emial') }}" placeholder="Exemplo@exemplo.com"><br>
                             </div>
                         </div>
                         <button class="btn btn-primary btn_confirmar align-self-center"
                             type="submit">Confirmar</button>
                     </div>
+
                 </form>
             </div>
         </div>

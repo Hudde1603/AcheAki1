@@ -32,4 +32,8 @@ Route::post('/item_perdido/{nome?}',[perdidosController::class,'pesquisarPerdido
 //rota para pesquisar item achado
 Route::post('/item_achado/{nome?}',[AchadosController::class,'pesquisar'])->name('itemachado');
 
+///rota do item com um valor opcional 
+Route::get('/pesquisa_perdido',[perdidosController::class,'homeList']);
+
+
 
