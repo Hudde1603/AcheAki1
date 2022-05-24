@@ -105,6 +105,13 @@
         </div>
     </div>
 
+    @if (Session::has('success'))
+        <div class="tudo wrapper ">
+            {{ Session::get('success') }}
+
+        </div>
+    @endif
+
     <div class="tudo wht mrge2 container">
         <div class="box_wh2">
 

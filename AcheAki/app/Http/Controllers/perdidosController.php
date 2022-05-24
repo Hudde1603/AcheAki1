@@ -19,6 +19,7 @@ use App\Models\DocumentoModel;
 use App\Models\PassaporteModel;
 use App\Models\BilheteModel;
 use App\Models\CartaoEleitoral;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class perdidosController extends Controller
@@ -69,7 +70,7 @@ class perdidosController extends Controller
         //mensagen de fedbek de validação
         $feedback = [
 
-            'selType.required' => 'Celecione Uma Opção ee',
+            'selType.required' => 'Selecione Uma Opção ee',
             'email.email' => 'deve preencher com um email valido ',
             'required' => 'o campo :attribute  é obrigatorio',
 
@@ -122,7 +123,7 @@ class perdidosController extends Controller
             ->get()->first();
 
 
-        ///cadastrar perdidos consuante o valor escolhido
+        ///cadastrar perdidos consuante o categoria escolhido
         if ($request->get('selType') == 'electronico') {
             //itens do select
             $cor = $request->get('cor');
@@ -179,7 +180,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+               return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Telefone') != null) {
                 $regras = [
                     'Telefone_Tipo' => 'required',
@@ -213,7 +214,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Computador') != null) {
 
                 ///ad on Telefone
@@ -229,7 +230,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         } elseif ($request->get('selType') == 'acessorios') {
 
@@ -284,7 +285,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Anel') != null) {
 
                 $anel = new AnelModel();
@@ -299,7 +300,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Pasta') != null) {
 
                 $pasta = new PastaModel();
@@ -314,7 +315,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Oculos') != null) {
                 $oculos = new OculosModel();
                 $oculos->idacessorio = $acessoriosid->idacessorio;
@@ -330,7 +331,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         } elseif ($request->get('selType') == 'documento') {
 
@@ -405,7 +406,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Passaporte') != null) {
 
                 $regras = [
@@ -446,7 +447,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Cartão_Eleitoral') != null) {
                 $regras = [
                     'crupo_eleitoral' => 'required',
@@ -480,7 +481,7 @@ class perdidosController extends Controller
                     ->get();
 
 
-                return view('perdidos', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         }
     }
@@ -512,7 +513,7 @@ class perdidosController extends Controller
         if ($selecionado ==  'Categoria') {
 
             /// pesquisa sem incluir a categoria 
-            $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+            $users = ArtigoModel::where('item_name', 'like', '%'.$nome.'%')
                 ->where('status', 'perdido')
                 ->get();
 
@@ -525,7 +526,7 @@ class perdidosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('eletronico', 'artigo.idartigo', '=', 'eletronico.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'perdido')
                     ->get();
 
@@ -536,7 +537,7 @@ class perdidosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('acessorio', 'artigo.idartigo', '=', 'acessorio.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome .'%')
                     ->where('status', 'perdido')
                     ->get();
 
@@ -546,14 +547,14 @@ class perdidosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('documento', 'artigo.idartigo', '=', 'documento.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'perdido')
                     ->get();
 
                 echo $itemElectronico;
             } else {
                 //pesuisa para a pagina home
-                $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+                $users = ArtigoModel::where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'perdido')
                     ->get();
 

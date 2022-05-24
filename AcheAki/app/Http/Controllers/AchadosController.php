@@ -44,20 +44,20 @@ class AchadosController extends Controller
             'selType' => 'required|in:electronico,acessorios,documento',
             'telefone' => 'required',
             'emial' => 'email',
-            'nome'=>'required',
-            'item_name'=>'required',
-            'local'=>'required',
-            'descricao'=>'required',
-            'foto'=>'required'
-            
+            'nome' => 'required',
+            'item_name' => 'required',
+            'local' => 'required',
+            'descricao' => 'required',
+            'foto' => 'required'
+
         ];
 
         //mensagen de fedbek de validação
         $feedback = [
 
             'selType.required' => 'Celecione Uma Opção ee',
-            'email.email'=>'deve preencher com um email valido ',
-            'required'=>'o campo :attribute  é obrigatorio',
+            'email.email' => 'deve preencher com um email valido ',
+            'required' => 'o campo :attribute  é obrigatorio',
 
         ];
 
@@ -116,19 +116,19 @@ class AchadosController extends Controller
             $modelo = $request->get('modelo');
 
             $regras = [
-                'cor'=>'required',
-                'marca'=>'required',
-                'modelo'=>'required'
-                
+                'cor' => 'required',
+                'marca' => 'required',
+                'modelo' => 'required'
+
             ];
-    
+
             //mensagen de fedbek de validação
             $feedback = [
-    
-                'required'=>'o campo :attribute  é obrigatorio',
-    
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
             ];
-    
+
             $request->validate($regras, $feedback);
 
 
@@ -165,22 +165,22 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Telefone') != null) {
                 $regras = [
-                    'Telefone_Tipo'=>'required',
-                    
+                    'Telefone_Tipo' => 'required',
+
                 ];
-        
+
                 //mensagen de fedbek de validação
                 $feedback = [
-        
-                    'required'=>'o campo :attribute  é obrigatorio',
-        
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
                 ];
-        
+
                 $request->validate($regras, $feedback);
-    
+
 
 
                 $Telefone_Tipo = $request->get('Telefone_Tipo');
@@ -199,7 +199,8 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Computador') != null) {
 
                 ///ad on Telefone
@@ -215,26 +216,26 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         } elseif ($request->get('selType') == 'acessorios') {
 
             $regras = [
-                'cor_acessorio'=>'required',
-                'Tamanho'=>'required',
-                'marca_acessorio'=>'required',
-                
+                'cor_acessorio' => 'required',
+                'Tamanho' => 'required',
+                'marca_acessorio' => 'required',
+
             ];
-    
+
             //mensagen de fedbek de validação
             $feedback = [
-    
-                'required'=>'o campo :attribute  é obrigatorio',
-    
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
             ];
-    
+
             $request->validate($regras, $feedback);
-            
+
 
             $cor_acessorio = $request->get('cor_acessorio');
             $Tamanho = $request->get('Tamanho');
@@ -270,7 +271,7 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Anel') != null) {
 
                 $anel = new AnelModel();
@@ -285,7 +286,7 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Pasta') != null) {
 
                 $pasta = new PastaModel();
@@ -300,7 +301,7 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Oculos') != null) {
                 $oculos = new OculosModel();
                 $oculos->idacessorio = $acessoriosid->idacessorio;
@@ -316,23 +317,23 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         } elseif ($request->get('selType') == 'documento') {
 
             $regras = [
-                'genero_doc'=>'required',
-                'nome_documento'=>'required',
-                
+                'genero_doc' => 'required',
+                'nome_documento' => 'required',
+
             ];
-    
+
             //mensagen de fedbek de validação
             $feedback = [
-    
-                'required'=>'o campo :attribute  é obrigatorio',
-    
+
+                'required' => 'o campo :attribute  é obrigatorio',
+
             ];
-    
+
             $request->validate($regras, $feedback);
 
             $Genero = $request->get('genero_doc');
@@ -357,18 +358,18 @@ class AchadosController extends Controller
             if ($request->get('Bilhete') != null) {
 
                 $regras = [
-                    'filhacao_pai'=>'required',
-                    'filhacao_mae'=>'required',
-                    
+                    'filhacao_pai' => 'required',
+                    'filhacao_mae' => 'required',
+
                 ];
-        
+
                 //mensagen de fedbek de validação
                 $feedback = [
-        
-                    'required'=>'o campo :attribute  é obrigatorio',
-        
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
                 ];
-        
+
                 $request->validate($regras, $feedback);
 
                 $filhacao_pai = $request->get('filhacao_pai');
@@ -391,23 +392,24 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Passaporte') != null) {
 
                 $regras = [
-                    'nmero_passaporte'=>'required',
-                    'nome_pessoal'=>'required',
-                    'tipo_passarporte'=>'required'
-                    
+                    'nmero_passaporte' => 'required',
+                    'nome_pessoal' => 'required',
+                    'tipo_passarporte' => 'required'
+
                 ];
-        
+
                 //mensagen de fedbek de validação
                 $feedback = [
-        
-                    'required'=>'o campo :attribute  é obrigatorio',
-        
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
                 ];
-        
+
                 $request->validate($regras, $feedback);
 
                 $nmero_passaporte = $request->get('nmero_passaporte');
@@ -432,21 +434,21 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             } elseif ($request->get('Cartão_Eleitoral') != null) {
                 $regras = [
-                    'crupo_eleitoral'=>'required',
-                    'numero_eleitoral'=>'required',
-                    
+                    'crupo_eleitoral' => 'required',
+                    'numero_eleitoral' => 'required',
+
                 ];
-        
+
                 //mensagen de fedbek de validação
                 $feedback = [
-        
-                    'required'=>'o campo :attribute  é obrigatorio',
-        
+
+                    'required' => 'o campo :attribute  é obrigatorio',
+
                 ];
-        
+
                 $request->validate($regras, $feedback);
 
                 $crupo_eleitoral = $request->get('crupo_eleitoral');
@@ -466,7 +468,7 @@ class AchadosController extends Controller
                     ->get();
 
 
-                return view('achados', ['todos' => $todo]);
+                return redirect()->back()->with('success', 'Cadastrado com sucesso');
             }
         }
     }
@@ -482,7 +484,7 @@ class AchadosController extends Controller
         if ($selecionado ==  'Categoria') {
 
             /// pesquisa sem incluir a categoria 
-            $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+            $users = ArtigoModel::where('item_name', 'like',  '%'.$nome.'%')
                 ->where('status', 'achado')
                 ->get();
 
@@ -495,7 +497,7 @@ class AchadosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('eletronico', 'artigo.idartigo', '=', 'eletronico.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'achado')
                     ->get();
 
@@ -506,7 +508,7 @@ class AchadosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('acessorio', 'artigo.idartigo', '=', 'acessorio.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'achado')
                     ->get();
 
@@ -517,14 +519,14 @@ class AchadosController extends Controller
                 $itemElectronico = DB::table('artigo')
                     ->join('documento', 'artigo.idartigo', '=', 'documento.idartigo')
                     ->select('artigo.*')
-                    ->where('item_name', 'like',  '%' . $nome . '%')
+                    ->where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'achado')
                     ->get();
 
                 echo $itemElectronico;
             } else {
                 //pesuisa para a pagina home
-                $users = ArtigoModel::where('item_name', 'like',  '%' . $nome . '%')
+                $users = ArtigoModel::where('item_name', 'like',  '%'.$nome.'%')
                     ->where('status', 'achado')
                     ->get();
 
