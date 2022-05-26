@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.corpo {
+    background-color: white;
+    width: 600px;
+    margin: auto;
+    border-radius: 5%;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.senha,
+.user {
+    width: 500px;
+    margin: auto;
+}
+
+.user,
+.senha {
+    margin-bottom: 5px;
+}
+
+button {
+    width: 500px;
+}
+
+form {
+    margin-top: 100px;
+    height: 550px;
+}

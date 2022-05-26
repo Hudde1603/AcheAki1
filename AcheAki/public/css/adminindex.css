@@ -1,0 +1,81 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.relatorio {
+    margin-top: 80px;
+}
+
+.relatorio,
+.processo {
+    background-color: white;
+    border-radius: 5px;
+    padding-top: 20px;
+    height: 250px;
+}
+
+.relatorio .card {
+    margin: auto;
+    width: 24%;
+}
+
+.relatorio .card h6 {
+    font-size: 20px;
+}
+
+.relatorio .card p {
+    font-size: 30px;
+    float: right;
+}
+
+.relatorio .card1 {
+    background-color: rgb(110, 212, 243);
+}
+
+.relatorio .card2 {
+    background-color: rgb(209, 115, 246);
+}
+
+.relatorio .card3 {
+    background-color: rgb(110, 243, 192);
+}
+
+.relatorio .card4 {
+    background-color: rgb(243, 110, 110);
+}
+
+.processo {
+    margin-top: 20px;
+}
+
+.processo .process {
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    width: 32%;
+}
+
+.processo .process {
+    padding-top: 25px;
+}
+
+.processo .process1 {
+    background-color: rgb(156, 253, 181);
+}
+
+.processo .process2 {
+    background-color: rgb(230, 253, 156);
+}
+
+.processo .process3 {
+    background-color: rgb(156, 163, 253);
+}
+
+.processo .process h6 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.processo .process p {
+    font-size: 30px;
+}

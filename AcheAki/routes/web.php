@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AchadosController;
 use App\Http\Controllers\perdidosController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\artigoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +38,15 @@ Route::post('/item_achado/{nome?}',[AchadosController::class,'pesquisar'])->name
 
 ///rota do item com um valor opcional 
 Route::get('/pesquisa_perdido',[perdidosController::class,'homeList']);
+
+//Login do Admin
+Route::get('/Admin/login', [loginController::class, 'login']) -> name ('login');
+
+//Principal do Administrador
+
+Route::get('/Admin/admin', [adminController::class, 'index']) -> name('admin');
+
+Route::get('/Admin/artigo', [artigoController::class, 'index']) -> name('artigo');
 
 
 

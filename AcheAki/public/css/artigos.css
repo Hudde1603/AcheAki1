@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.formulario,
+.gerenciamento {
+    background-color: white;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+
+.formulario {
+    margin-top: 80px;
+}
+
+.btn {
+    margin-bottom: 15px;
+}
+
+.gerenciamento {
+    margin-top: 20px;
+}
+
+.gerenciamento a {
+    text-decoration: none;
+}
+
+.gerenciamento .delete {
+    color: red;
+}
